@@ -1,0 +1,75 @@
+body{
+    margin: 0;
+    padding: 10px;
+    background: rgba(97, 197, 236, 0.5);
+    font-family: sans-serif;
+}
+
+.logInBox{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: 420px;
+    padding: 80px 40px;
+    box-sizing: border-box;
+    background: rgba(72, 69, 202, 0.5);
+    border: 2px dotted rgb(201, 31, 201);
+    border-radius: 20px;
+}
+
+.user{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: absolute;
+    top:calc(-100px/2);
+    left:calc(35%);
+}
+
+h2{
+    margin: 0;
+    padding: 0 0 20px;
+    color: #0c0c07;
+    text-align: center;  
+}
+
+.logInBox p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: #fff;
+}
+
+.logInBox input{
+    width: 100%;
+    margin-bottom: 20px;
+    padding-left: 10px;
+}
+
+.logInBox input[type="email"],
+.logInBox input[type="password"]{
+    border:none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    height: 30px;
+    color:black;
+    font-size: 16px;
+    border: 2 px dashed rgb(0, 0, 0);
+    border-radius: 10px;
+}
+
+
+
+.logInBox input[type="submit"]{
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+    background: #2ae72a;
+    font-weight: bold;
+}
