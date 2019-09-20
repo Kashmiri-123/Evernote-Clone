@@ -26,7 +26,7 @@ class Home extends React.Component{
      return data;
     });
     console.log(notes);
-    this.setState({notes});
+    this.setState({notes:notes});
   });
   }
     render()

@@ -15,33 +15,82 @@ class SideBarComponent extends React.Component {
     }
 
     newNoteBtnClick = () => {
-      
+      this.setState({title:null, addingNote : !this.state.addingNote});
+    }
+
+    updateTitle = (text) => {
+     this.setState({
+         title:text
+     });
+    }
+
+    newNote = () => {
+       console.log( this.state);
+    }
+
+    selectNote = () => {
+
+    }
+
+    deleteNote = () => {
+
     }
 
     render () {
         const { notes, classes, selectNoteIndex } = this.props;
+        if(notes){
         return (
             <div className={classes.sidebarContainer}>
                 <Button 
                 onClick={this.newNoteBtnClick}
                 className={classes.newNoteBtn}>
-                    New Note
+                    {this.state.addingNote ? "Cancel" : "New Note"}
                 </Button>
-                {
+                 {
                     this.state.addingNote ?
                     <div>
                        <input
                        type="text"
                        className={classes.newNoteInput}
                        placeholder = "Enter note title"
-                       
-                       >
+                       onKeyUp = {(e) => 
+                       this.updateTitle(e.target.value)
+                       }>
                        </input>
+                       <Button
+                       className={classes.newNoteSubmitBtn}
+                         onClick= {this.newNote}
+                       >
+                        Submit
+                      </Button>
                     </div> :
                     null
                 }
+
+                <List>
+                    {
+                     notes.map((_note, _index) => {
+                         return (
+                         <div key={_index}>
+                          <SideBarComponent
+                          _note={_note}
+                          _index={_index}
+                          selectNoteIndex={selectNoteIndex}
+                          selectNote={this.selectNote}
+                          deleteNote={this.deleteNote}
+                          >
+                          </SideBarComponent>
+                          <Divider></Divider>
+                         </div>);
+                     })
+                    }
+                </List>
             </div>
         );
+    }
+        else{
+            return (<div></div>);
+        }
     }
 }
 
