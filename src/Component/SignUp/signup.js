@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import './style.css';
 import {withRouter} from 'react-router';
 
-class Login extends React.Component{
+class SignUp extends React.Component{
+    
     goToPage(){
         this.props.history.push("/home");
-      }
-      goToSignUp(){
-        this.props.history.push("/signup");
       }
     render(){
         return (
@@ -20,9 +18,7 @@ class Login extends React.Component{
             <input type="email" name="" placeholder="Enter your valid email"/>
             <p>Password: </p>
             <input type="password" name="" placeholder="Enter your password" />
-            <button class="logInButton" onClick={this.goToPage.bind(this)}>Log In</button>
-            <button class="logInButton" onClick={this.goToSignUp.bind(this)}>Sign Up</button>
-            <br/><a href ="#">Forgot Password</a>
+            <button class="logInButton" onClick={this.goToPage.bind(this)}>Sign Up</button>
         </form>
          </div>
             </div>
@@ -30,4 +26,4 @@ class Login extends React.Component{
     }
 }
 
-export default withRouter(Login);
+export default withRouter(SignUp);
