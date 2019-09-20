@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 import List from '@material-ui/core/List';
 import { Divider, Button } from '@material-ui/core';
-import SidebarItemComponent from '../sidebaritem/sidebaritem';
+import SideBarItem from '../sidebaritem/sidebaritem';
 
 class SideBarComponent extends React.Component {
     constructor(props) {
@@ -11,28 +11,28 @@ class SideBarComponent extends React.Component {
         this.state = {
             addingNote : false,
             title :null
-        }
+        };
     }
 
     newNoteBtnClick = () => {
       this.setState({title:null, addingNote : !this.state.addingNote});
     }
 
-    updateTitle = (text) => {
+    updateTitle = (txt) => {
      this.setState({
-         title:text
+         title:txt
      });
     }
 
     newNote = () => {
-       console.log( this.state);
     }
 
     selectNote = () => {
-
+      console.log("done");
     }
 
     deleteNote = () => {
+        console.log("done");
 
     }
 
@@ -55,33 +55,28 @@ class SideBarComponent extends React.Component {
                        placeholder = "Enter note title"
                        onKeyUp = {(e) => 
                        this.updateTitle(e.target.value)
-                       }>
-                       </input>
+                       }/>
                        <Button
                        className={classes.newNoteSubmitBtn}
-                         onClick= {this.newNote}
-                       >
+                         onClick= {this.newNote}>
                         Submit
                       </Button>
                     </div> :
-                    null
+                    <div/>
                 }
-
                 <List>
                     {
-                     notes.map((_note, _index) => {
+                     this.props.notes.map((_note, _index) => {
                          return (
                          <div key={_index}>
-                          <SideBarComponent
+                          <SideBarItem
                           _note={_note}
                           _index={_index}
                           selectNoteIndex={selectNoteIndex}
                           selectNote={this.selectNote}
-                          deleteNote={this.deleteNote}
-                          >
-                          </SideBarComponent>
+                          deleteNote={this.deleteNote}/>
                           <Divider></Divider>
-                         </div>);
+                         </div>)
                      })
                     }
                 </List>

@@ -3,7 +3,6 @@ import {withRouter} from 'react-router';
 import '../App.css';
 import SideBarComponent from "./sidebar/sidebar";
 import EditorComponent from "./editor/editor";
-
 const firebase = require("firebase");
 
 class Home extends React.Component{
@@ -36,7 +35,8 @@ class Home extends React.Component{
                <SideBarComponent 
                selectNoteIndex= {this.state.selectNoteIndex}
                notes = {this.state.notes}
-               ></SideBarComponent>
+               >
+               </SideBarComponent>
                <EditorComponent></EditorComponent>
             </div>
         );
