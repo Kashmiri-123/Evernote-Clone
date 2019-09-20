@@ -7,34 +7,36 @@ const firebase = require("firebase");
 
 class Home extends React.Component{
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      selectNoteIndex : null,
-      selectNote : null,
-      notes : null
-    }
+      selectedNoteIndex: null,
+      selectedNote: null,
+      notes: null
+    };
   }
 
-  componentDidMount=()=>{
-  firebase.firestore().collection('notes').onSnapshot(serverUpdate => {
-    const notes = serverUpdate.docs.map(_doc => {
-     const data = _doc.data();//_doc is a propeerty of the serverUpdate object.ServerUpdate 
-     //automatically is called whenever the note collection is updated in firebase,
-     data['id'] = _doc.id;
-     return data;
-    });
-    console.log(notes);
-    this.setState({notes:notes});
-  });
+  componentDidMount = () => {
+    firebase
+      .firestore()
+      .collection('notes')
+      .onSnapshot(serverUpdate => {
+        const notes = serverUpdate.docs.map(_doc => {
+          const data = _doc.data();
+          data['id'] = _doc.id;
+          return data;
+        });
+        console.log(notes);
+        this.setState({ notes: notes });
+      });
   }
     render()
     {
         return(
             <div className="app-container">
                <SideBarComponent 
-               selectNoteIndex= {this.state.selectNoteIndex}
-               notes = {this.state.notes}
+               selectedNoteIndex={this.state.selectedNoteIndex}
+               notes={this.state.notes}
                >
                </SideBarComponent>
                <EditorComponent></EditorComponent>
