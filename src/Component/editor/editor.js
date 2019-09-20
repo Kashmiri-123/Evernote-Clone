@@ -14,6 +14,24 @@ class EditorComponent extends React.Component {
           id: ''
         };
       }
+    
+      componentDidMount = () => {
+        this.setState({
+          text: this.props.selectedNote.body,
+          title: this.props.selectedNote.title,
+          id: this.props.selectedNote.id
+        });
+      }
+    
+      componentDidUpdate = () => {
+        if(this.props.selectedNote.id !== this.state.id) {
+          this.setState({
+            text: this.props.selectedNote.body,
+            title: this.props.selectedNote.title,
+            id: this.props.selectedNote.id
+          });
+        }
+      }
 
 
       updateBody = async (val) => {
@@ -27,21 +45,40 @@ class EditorComponent extends React.Component {
         //saving to database
         console.log("updating the databse");
        }, 1800);
-   
+    
+    updateBody = async (val) => {
+        await this.setState({ text: val });
+        this.update();
+      };
+      updateTitle = async (txt) => {
+        await this.setState({ title: txt });
+        this.update();
+      }
+      update = debounce(() => {
+        this.props.noteUpdate(this.state.id, {
+          title: this.state.title,
+          body: this.state.text
+        })
+      }, 1500);
 
     render () {
     
-        const {classes} = this.props;
+        const { classes } = this.props;
 
-        return (
-            <div className = {classes.editorContainer}>
-                <ReactQuill
-                 value = {this.state.text}
-                 onChange = {this.updateBody}
-                >
-
-                </ReactQuill>
-            </div>
+    return(
+      <div className={classes.editorContainer}>
+        <BorderColorIcon className={classes.editIcon}></BorderColorIcon>
+        <input
+          className={classes.titleInput}
+          placeholder='Note title...'
+          value={this.state.title ? this.state.title : ''}
+          onChange={(e) => this.updateTitle(e.target.value)}>
+        </input>
+        <ReactQuill 
+          value={this.state.text} 
+          onChange={this.updateBody}>
+        </ReactQuill>
+      </div>
         );
     }
 }
