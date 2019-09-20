@@ -23,7 +23,7 @@ class SideBarItemComponent extends React.Component {
         const { _index, _note, classes, selectedNoteIndex } = this.props;
 
         return(
-          <div key={_index}>
+            <div key={_index}>
             <ListItem
               className={classes.listItem}
               selected={selectedNoteIndex === _index}

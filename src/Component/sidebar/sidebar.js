@@ -17,22 +17,19 @@ class SideBarComponent extends React.Component {
       newNoteBtnClick = () => {
         this.setState({ title: null, addingNote: !this.state.addingNote });
       }
-
+      
       updateTitle = (txt) => {
         this.setState({ title: txt });
       }
 
-    newNote = () => {
-    }
+      newNote = () => {
+        this.props.newNote(this.state.title);
+        this.setState({ title: null, addingNote: false });
+      }
 
-    selectNote = (n, i) => {
-      this.props.selectNote(n, i);
-    }
+      selectNote = (n, i) => this.props.selectNote(n, i);
 
-    deleteNote = () => {
-        console.log("done");
-
-    }
+      deleteNote = (note) => this.props.deleteNote(note);
 
     render() {
 

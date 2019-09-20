@@ -31,7 +31,11 @@ class Home extends React.Component{
       });
   }
 
-  selectNote = (note, index) => this.setState({ selectedNoteIndex: index, selectedNote: note });
+  selectNote = (note, index) => this.setState({ 
+    selectedNoteIndex: index, selectedNote: note
+   });
+
+
   noteUpdate = (id, noteObj) => {
     firebase
       .firestore()
@@ -43,11 +47,13 @@ class Home extends React.Component{
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       });
   }
+
   newNote = async (title) => {
     const note = {
       title: title,
       body: ''
     };
+    
     const newFromDB = await firebase
       .firestore()
       .collection('notes')
